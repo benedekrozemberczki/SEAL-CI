@@ -80,6 +80,6 @@ def parameter_parser():
     parser.add_argument("--lambd",
                         type = float,
                         default = 10**-4,
-	                help = "Adam weight decay. Default is 5*10^-4.")
+	                help = "Attention regularization coefficient. Default is 10^-4.")
 
     return parser.parse_args()
