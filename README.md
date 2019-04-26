@@ -77,7 +77,7 @@ The following commands learn a model and save the predictions. Training a model 
 python src/main.py
 ```
 <p align="center">
-  <img width="500" src="capsgnn.gif">
+  <img width="500" src="seal.gif">
 </p>
 
 Training a CapsGNNN model for a 100 epochs.
