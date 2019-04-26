@@ -65,7 +65,7 @@ def parameter_parser():
     parser.add_argument("--graph-level-epochs",
                         type = int,
                         default = 5,
-	                help = "Number of graph pairs per batch. Default is 128.")
+	                help = "Number of epocs on the graph level. Default is 5.")
 
     parser.add_argument("--learning-rate",
                         type = float,
