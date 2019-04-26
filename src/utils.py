@@ -1,6 +1,15 @@
 from texttable import Texttable
 from tqdm import tqdm
 import json
+import numpy as np
+import pandas as pd
+import networkx as nx
+
+
+def hierarchical_graph_reader(path):
+    edges = pd.read_csv(path).values.tolist()
+    graph = nx.from_edgelist(edges)
+    return graph
 
 def graph_level_reader(path):
     data = json.load(open(path))

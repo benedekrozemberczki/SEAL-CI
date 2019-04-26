@@ -8,8 +8,8 @@ def main():
     args = parameter_parser()
     tab_printer(args)
     trainer = SEALTrainer(args)
-    trainer.fit()
-    trainer.score()
+    embeddings = trainer.fit()
+    trainer.score(embeddings)
     
 if __name__ == "__main__":
     main()
