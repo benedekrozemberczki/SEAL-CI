@@ -9,12 +9,10 @@ Node classification and graph classification are two graph learning problems tha
 
 This repository provides a PyTorch implementation of SEAL-CI as described in the paper:
 
-> Capsule Graph Neural Network.
+> Semi-Supervised Graph Classification: A Hierarchical Graph Perspective.
 > Zhang Xinyi, Lihui Chen.
 > WWW, 2019.
 > [[Paper]](https://arxiv.org/pdf/1904.05003.pdf)
-
-The core Capsule Neural Network implementation adapted is available [[here]](https://github.com/timomernick/pytorch-capsule).
 
 ### Requirements
 The codebase is implemented in Python 3.5.2. package versions used for development are just below.
