@@ -20,7 +20,7 @@ def parameter_parser():
     parser.add_argument("--labeled-count",
                         type = int,
                         default = 50,
-	                help = "Filters (neurons) in 2nd convolution. Default is 32.")
+	                help = "Number of labeled data points. Default is 50.")
 
     parser.add_argument("--budget",
                         type = int,
