@@ -55,7 +55,7 @@ def parameter_parser():
     parser.add_argument("--batch-size",
                         type = int,
                         default = 8,
-	                help = "Number of graph pairs per batch. Default is 128.")
+	                help = "Number of graphs per batch. Default is 8.")
 
     parser.add_argument("--macro-epochs",
                         type = int,
