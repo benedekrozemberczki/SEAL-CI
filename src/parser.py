@@ -74,7 +74,7 @@ def parameter_parser():
 
     parser.add_argument("--weight-decay",
                         type = float,
-                        default = 5*10**-5,
+                        default = 5*10**-4,
 	                help = "Adam weight decay. Default is 5*10^-4.")
 
     parser.add_argument("--lambd",
