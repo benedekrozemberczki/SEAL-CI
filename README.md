@@ -12,7 +12,7 @@ This repository provides a PyTorch implementation of SEAL-CI as described in the
 > Capsule Graph Neural Network.
 > Zhang Xinyi, Lihui Chen.
 > WWW, 2019.
-> [[Paper]](https://openreview.net/forum?id=Byl8BnRcYm)
+> [[Paper]](https://arxiv.org/pdf/1904.05003.pdf)
 
 The core Capsule Neural Network implementation adapted is available [[here]](https://github.com/timomernick/pytorch-capsule).
 
