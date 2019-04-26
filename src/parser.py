@@ -45,7 +45,7 @@ def parameter_parser():
     parser.add_argument("--first-dense-neurons",
                         type = int,
                         default = 16,
-	                help = "Neurons in tensor network layer. Default is 16.")
+	                help = "Neurons in SAGE aggregator layer. Default is 16.")
 
     parser.add_argument("--second-dense-neurons",
                         type = int,
