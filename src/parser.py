@@ -60,7 +60,7 @@ def parameter_parser():
     parser.add_argument("--macro-epochs",
                         type = int,
                         default = 50,
-	                help = "Number of graph pairs per batch. Default is 128.")
+	                help = "Number of hierarchical learning epochs. Default is 50.")
 
     parser.add_argument("--graph-level-epochs",
                         type = int,
