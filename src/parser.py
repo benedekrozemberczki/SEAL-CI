@@ -40,7 +40,7 @@ def parameter_parser():
     parser.add_argument("--macro-gcn-dimensions",
                         type = int,
                         default = 16,
-	                help = "Filters (neurons) in 1st macro convolution. Default is 32.")
+	                help = "Filters (neurons) in 1st macro convolution. Default is 16.")
 
     parser.add_argument("--first-dense-neurons",
                         type = int,
