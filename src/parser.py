@@ -25,7 +25,7 @@ def parameter_parser():
     parser.add_argument("--budget",
                         type = int,
                         default = 20,
-	                help = "Filters (neurons) in 2nd convolution. Default is 32.")
+	                help = "Number of data points added in learning phase. Default is 20.")
 
     parser.add_argument("--first-gcn-dimensions",
                         type = int,
@@ -40,7 +40,7 @@ def parameter_parser():
     parser.add_argument("--macro-gcn-dimensions",
                         type = int,
                         default = 16,
-	                help = "Filters (neurons) in 2nd convolution. Default is 32.")
+	                help = "Filters (neurons) in 1st macro convolution. Default is 32.")
 
     parser.add_argument("--first-dense-neurons",
                         type = int,
