@@ -35,7 +35,7 @@ def parameter_parser():
     parser.add_argument("--second-gcn-dimensions",
                         type = int,
                         default = 16,
-	                help = "Filters (neurons) in 2nd convolution. Default is 32.")
+	                help = "Filters (neurons) in 2nd convolution. Default is 16.")
 
     parser.add_argument("--macro-gcn-dimensions",
                         type = int,
