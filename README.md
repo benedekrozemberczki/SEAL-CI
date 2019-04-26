@@ -10,7 +10,7 @@ Node classification and graph classification are two graph learning problems tha
 This repository provides a PyTorch implementation of SEAL-CI as described in the paper:
 
 > Semi-Supervised Graph Classification: A Hierarchical Graph Perspective.
-> Zhang Xinyi, Lihui Chen.
+> Jia Li, Yu Rong, Hong Cheng, Helen Meng, Wenbing Huang, Junzhou Huang.
 > WWW, 2019.
 > [[Paper]](https://arxiv.org/pdf/1904.05003.pdf)
 
