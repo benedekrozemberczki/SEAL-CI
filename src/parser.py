@@ -50,7 +50,7 @@ def parameter_parser():
     parser.add_argument("--second-dense-neurons",
                         type = int,
                         default = 8,
-	                help = "Bottle neck layer neurons. Default is 16.")
+	                help = "Bottle neck layer neurons. Default is 8.")
 
     parser.add_argument("--batch-size",
                         type = int,
