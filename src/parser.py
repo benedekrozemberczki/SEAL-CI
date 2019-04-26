@@ -10,12 +10,12 @@ def parameter_parser():
     parser.add_argument("--graphs",
                         nargs = "?",
                         default = "./input/graphs/",
-	                help = "Folder with training graph pair jsons.")
+	                help = "Folder with training graph jsons.")
 
     parser.add_argument("--hierarchical-graph",
                         nargs = "?",
                         default = "./input/synthetic_edges.csv",
-	                help = "Folder with testing graph pair jsons.")
+	                help = "Hierarchical edge list.")
 
     parser.add_argument("--labeled-count",
                         type = int,
