@@ -60,6 +60,9 @@ class SEALCITrainer(object):
         self.node_indices = torch.LongTensor(self.node_indices)
 
     def fit_a_single_model(self):
+        """
+        Fitting a single SEAL model.
+        """
         self._setup_model()
         optimizer = torch.optim.Adam(self.model.parameters(), lr=self.args.learning_rate, weight_decay=self.args.weight_decay)      
         for epoch in range(self.args.epochs):
