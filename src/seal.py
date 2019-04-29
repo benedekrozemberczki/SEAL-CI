@@ -24,6 +24,9 @@ class SEALCITrainer(object):
         self.model = SEAL(self.args, self.dataset_generator.number_of_features, self.dataset_generator.number_of_labels)
 
     def _setup_macro_graph(self):
+        """
+        Creating an edge list for the hierarchical graph.
+        """
         self.macro_graph_edges = [[edge[0],edge[1]] for edge in self.macro_graph.edges()]
         self.macro_graph_edges = torch.t(torch.LongTensor(self.macro_graph_edges))
 
