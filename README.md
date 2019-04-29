@@ -54,9 +54,8 @@ Training a SEAL-CI model is handled by the `src/main.py` script which provides t
 
 #### Input and output options
 ```
-  --training-graphs   STR    Training graphs folder.      Default is `dataset/train/`.
+  --graphs   STR    Training graphs folder.      Default is `dataset/train/`.
   --testing-graphs    STR    Testing graphs folder.       Default is `dataset/test/`.
-  --prediction-path   STR    Output predictions file.     Default is `output/watts_predictions.csv`.
 ```
 #### Model options
 ```
