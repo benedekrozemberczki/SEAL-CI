@@ -55,17 +55,17 @@ def parameter_parser():
     parser.add_argument("--epochs",
                         type = int,
                         default = 10,
-	                help = "Number of hierarchical learning epochs. Default is 50.")
+	                help = "Number of epochs. Default is 10.")
 
     parser.add_argument("--learning-rate",
                         type = float,
                         default = 0.01,
-	                help = "Learning rate. Default is 0.001.")
+	                help = "Learning rate. Default is 0.01.")
 
     parser.add_argument("--weight-decay",
                         type = float,
                         default = 5*10**-5,
-	                help = "Adam weight decay. Default is 5*10^-4.")
+	                help = "Adam weight decay. Default is 5*10^-5.")
 
     parser.add_argument("--gamma",
                         type = float,
