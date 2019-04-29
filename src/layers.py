@@ -4,16 +4,25 @@ import numpy as np
 from utils import graph_level_reader
 from torch_geometric.nn import GCNConv
 
-
 class SAGE(torch.nn.Module):
-
+    """
+    SAGE layer class.
+    """
     def __init__(self, args, number_of_features):
+        """
+        Creating a SAGE layer.
+        :param args: Arguments object.
+        :param number_of_features: Number of node features.
+        """
         super(SAGE, self).__init__()
         self.args = args
         self.number_of_features = number_of_features
         self._setup()
 
     def _setup(self):
+        """
+        Setting up upstream and pooling layers.
+        """
         self.graph_convolution_1 = GCNConv(self.number_of_features, self.args.first_gcn_dimensions)
         self.graph_convolution_2 = GCNConv(self.args.first_gcn_dimensions, self.args.second_gcn_dimensions)
         self.fully_connected_1 = torch.nn.Linear(self.args.second_gcn_dimensions, self.args.first_dense_neurons)
