@@ -39,10 +39,10 @@ def tab_printer(args):
 
 def get_graph_labels_and_features(graph_files):
     """
-
-    :param graph_files:
-    :return features:
-    :return labels:
+    Creating feature and label maps.
+    :param graph_files: Json filer list.
+    :return features: Feature map.
+    :return labels: Label map.
     """
     labels = set()
     features = set()
@@ -53,8 +53,6 @@ def get_graph_labels_and_features(graph_files):
     labels = {v:i for i,v in enumerate(labels)}
     features = {v:i for i,v in enumerate(features)}
     return features, labels
-
-
 
 class GraphDatasetGenerator(object):
 
