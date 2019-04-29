@@ -83,14 +83,25 @@ class GraphDatasetGenerator(object):
 
     def _transform_edges(self, raw_data):
         """
+        Transforming an edge list from the data dictionary to a tensor.
+        :param raw_data: Dictionary with edge list.
+        :return : Edge list matrix.
         """
         return torch.t(torch.LongTensor(raw_data["edges"]))
 
     def _concatenate_name(self, index):
+        """
+        Creating a file name from an index.
+        :param index: Graph index.
+        :return : File name.
+        """
         return self.path + str(index) + ".json"
 
     def _transform_features(self, raw_data):
         """
+        Creating a feature matrix from the raw data.
+        :param raw_data: Dictionary with features.
+        :return feature_matrix: FloatTensor of features. 
         """
         number_of_nodes = len(raw_data["features"])
         feature_matrix = np.zeros((number_of_nodes, self.number_of_features))
