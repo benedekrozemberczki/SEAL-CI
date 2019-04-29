@@ -9,6 +9,10 @@ class SEALCITrainer(object):
     Semi-Supervised Graph Classification: A Hierarchical Graph Perspective Cautious Iteration model.
     """
     def __init__(self,args):
+        """
+        Creating dataset, doing dataset split, creating target and node index vectors.
+        :param args: Arguments object.
+        """
         self.args = args
         self.macro_graph = hierarchical_graph_reader(self.args.hierarchical_graph)
         self.dataset_generator = GraphDatasetGenerator(self.args.graphs)
