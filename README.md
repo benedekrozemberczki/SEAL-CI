@@ -61,7 +61,7 @@ Training a SEAL-CI model is handled by the `src/main.py` script which provides t
 ```
   --epochs                      INT     Number of epochs.                  Default is 10.
   --budget                      INT     Nodes to be added.                 Default is 20.
-  --labeled-count               INT     Number of labeled instances.       Default is 50.
+  --labeled-count               INT     Number of labeled instances.       Default is 100.
   --first-gcn-dimensions        INT     Graph level GCN 1st filters.
   --second-gcn-dimensions       INT     Graph level GCN 2nd filters.
   --first-dense-neurons         INT     SAGE aggregator neurons.           Default is
