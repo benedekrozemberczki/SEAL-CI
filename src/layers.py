@@ -110,6 +110,8 @@ class SEAL(torch.nn.Module):
     def forward(self, graphs, macro_edges):
         """
         Making a forward pass.
+        :param graphs: Graph data instance.
+        :param macro_edges: Macro edge list matrix.
         :return predictions: Predicted scores.
         :return penalties: Average penalty on graph representations.
         """
