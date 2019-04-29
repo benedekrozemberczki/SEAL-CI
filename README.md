@@ -54,8 +54,8 @@ Training a SEAL-CI model is handled by the `src/main.py` script which provides t
 
 #### Input and output options
 ```
-  --graphs   STR    Training graphs folder.      Default is `dataset/train/`.
-  --testing-graphs    STR    Testing graphs folder.       Default is `dataset/test/`.
+  --graphs                STR    Training graphs folder.      Default is `input/graphs/`.
+  --hierarchical-graph    STR    Macro level graph.           Default is `input/synthetic_edges.csv`.
 ```
 #### Model options
 ```
