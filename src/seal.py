@@ -18,6 +18,9 @@ class SEALCITrainer(object):
         self._create_node_indices()
 
     def _setup_model(self):
+        """
+        Creating a SEAL model.
+        """
         self.model = SEAL(self.args, self.dataset_generator.number_of_features, self.dataset_generator.number_of_labels)
 
     def _setup_macro_graph(self):
