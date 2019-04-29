@@ -40,7 +40,7 @@ Every JSON file has the following key-value structure:
 
 ```javascript
 {"edges": [[0, 1],[1, 2],[2, 3],[3, 4]],
- "features": {"0": ["A"], "1": ["B"], "2": ["C"], "3": ["A"], "4": ["B"]},
+ "features": {"0": ["A","B"], "1": ["B","K"], "2": ["C","F","A"], "3": ["A","B"], "4": ["B"]},
  "label": "A"}
 ```
 The **edges** key has an edge list value which descibes the connectivity structure. The **features** key has features for each node which are stored as a dictionary -- within this nested dictionary features are list values, node identifiers are keys. The **label** key has a value which is the class membership.
