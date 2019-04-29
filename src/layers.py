@@ -48,19 +48,34 @@ class SAGE(torch.nn.Module):
         return graph_embedding, penalty
 
 class MacroGCN(torch.nn.Module):
-
+    """
+    Macro Hierarchical GCN layer.
+    """
     def __init__(self, args, number_of_features, number_of_labels):
         super(MacroGCN, self).__init__()
+        """
+        Creating a GCN layer for hierarchical learning.
+        :param args: Arguments object.
+        :param number_of_features: Graph level embedding size.
+        :param number_of_labels: Number of node level labels.
+        """
         self.args = args
         self.number_of_features = number_of_features
         self.number_of_labels = number_of_labels
         self._setup()
 
     def _setup(self):
+        """
+        We define two GCN layers, the downstram does classification.
+        """
         self.graph_convolution_1 = GCNConv(self.number_of_features, self.args.macro_gcn_dimensions)
         self.graph_convolution_2 = GCNConv(self.args.macro_gcn_dimensions, self.number_of_labels)
         
     def forward(self, features, edges):
+        """
+        Making a forward pass.
+        :param features: Node level embedding.
+        """
         node_features_1 = torch.nn.functional.relu(self.graph_convolution_1(features, edges))
         node_features_2 = self.graph_convolution_2(node_features_1, edges)
         predictions = torch.nn.functional.log_softmax(node_features_2,dim=1)
