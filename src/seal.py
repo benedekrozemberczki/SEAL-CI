@@ -84,7 +84,14 @@ class SEALCITrainer(object):
         accuracy = float(correct)/float(normalizer)
         return scores, prediction_indices, accuracy
             
-    def _chose_best_candidate(self, predictions, indices):
+    def _choose_best_candidate(self, predictions, indices):
+        """
+        Choosing the best candidate based on predictions.
+        :param predictions: Scores.
+        :param indices: Vector of likely labels.
+        :return candidate: Node chosen.
+        :return label: Label of node.
+        """
         nodes = self.node_indices[self.labeled_mask==0]
         sub_predictions = predictions[self.labeled_mask==0]
         sub_predictions, candidate = sub_predictions.max(dim=0)
@@ -105,7 +112,7 @@ class SEALCITrainer(object):
         for step in budget_size:
             self.fit_a_single_model()
             scores, prediction_indices, accuracy = self.score_a_single_model()
-            candidate, label = self._chose_best_candidate(scores, prediction_indices)
+            candidate, label = self._choose_best_candidate(scores, prediction_indices)
             self._update_target(candidate, label)
             budget_size.set_description("Unlabeled Accuracy:%g" % round(accuracy, 4))
 
