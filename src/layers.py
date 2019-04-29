@@ -1,13 +1,15 @@
 import torch
+import glob
 from torch_geometric.nn import GCNConv
+from utils import graph_level_reader
+import numpy as np
 
 class SAGE(torch.nn.Module):
 
-    def __init__(self, args, number_of_features, number_of_labels):
+    def __init__(self, args, number_of_features):
         super(SAGE, self).__init__()
         self.args = args
         self.number_of_features = number_of_features
-        self.number_of_labels = number_of_labels
         self._setup()
 
     def _setup(self):
@@ -15,7 +17,6 @@ class SAGE(torch.nn.Module):
         self.graph_convolution_2 = GCNConv(self.args.first_gcn_dimensions, self.args.second_gcn_dimensions)
         self.fully_connected_1 = torch.nn.Linear(self.args.second_gcn_dimensions, self.args.first_dense_neurons)
         self.fully_connected_2 = torch.nn.Linear(self.args.first_dense_neurons, self.args.second_dense_neurons)
-        self.last_fully_connected = torch.nn.Linear(self.args.second_gcn_dimensions*self.args.second_dense_neurons, self.number_of_labels)
 
     def forward(self, data):
 
@@ -35,10 +36,8 @@ class SAGE(torch.nn.Module):
 
         penalty = torch.mm(torch.t(attention),attention)-torch.eye(self.args.second_dense_neurons)
         penalty = torch.sum(torch.norm(penalty, p=2, dim=1))
-        predictions = self.last_fully_connected(graph_embedding)
-        predictions = torch.nn.functional.log_softmax(predictions,dim=1)
 
-        return graph_embedding, penalty, predictions
+        return graph_embedding, penalty
 
 class MacroGCN(torch.nn.Module):
 
@@ -58,3 +57,36 @@ class MacroGCN(torch.nn.Module):
         node_features_2 = self.graph_convolution_2(node_features_1, edges)
         predictions = torch.nn.functional.log_softmax(node_features_2,dim=1)
         return predictions
+
+
+class SEAL(torch.nn.Module):
+     
+    def __init__(self, args, number_of_features, number_of_labels): 
+        super(SEAL, self).__init__()
+        self.args = args
+        self.number_of_features = number_of_features
+        self.number_of_labels = number_of_labels
+        self._setup()
+
+    def _setup(self):
+        self.graph_level_model = SAGE(self.args, self.number_of_features)
+        self.hierarchical_model = MacroGCN(self.args, self.args.second_gcn_dimensions*self.args.second_dense_neurons, self.number_of_labels)
+
+
+    def forward(self, graphs, macro_edges):
+        embeddings = []
+        penalties = 0
+        for graph in graphs:
+            embedding, penalty = self.graph_level_model(graph)
+            embeddings.append(embedding)
+            penalties = penalties + penalty
+        embeddings = torch.cat(tuple(embeddings))
+        penalties = penalties/len(graphs)
+        predictions = self.hierarchical_model(embeddings, macro_edges)
+        return predictions, penalties
+        
+        
+
+
+
+
