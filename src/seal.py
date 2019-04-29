@@ -44,6 +44,9 @@ class SEALCITrainer(object):
         self.unlabeled_indices = graph_indices[self.args.labeled_count:]
 
     def _create_labeled_target(self):
+        """
+        Creating a mask for labeled instances and a target for them.
+        """
         self.labeled_mask = torch.LongTensor([0 for node in self.macro_graph.nodes()])
         self.labeled_target = torch.LongTensor([0 for node in self.macro_graph.nodes()])
         self.labeled_mask[torch.LongTensor(self.labeled_indices)] = 1
