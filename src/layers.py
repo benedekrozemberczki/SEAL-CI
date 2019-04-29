@@ -75,6 +75,8 @@ class MacroGCN(torch.nn.Module):
         """
         Making a forward pass.
         :param features: Node level embedding.
+        :param egdes: Edge matrix of macro-model.
+        :return predictions: Predictions for nodes.
         """
         node_features_1 = torch.nn.functional.relu(self.graph_convolution_1(features, edges))
         node_features_2 = self.graph_convolution_2(node_features_1, edges)
