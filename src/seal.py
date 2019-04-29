@@ -28,6 +28,9 @@ class SEALCITrainer(object):
         self.macro_graph_edges = torch.t(torch.LongTensor(self.macro_graph_edges))
 
     def _create_split(self):
+        """
+        Creating a labeled-unlabeled split.
+        """
         graph_indices = [index for index in range(len(self.dataset_generator.graphs))]
         random.shuffle(graph_indices)
         self.labeled_indices = graph_indices[0:self.args.labeled_count]
