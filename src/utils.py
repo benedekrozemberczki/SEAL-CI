@@ -8,11 +8,21 @@ import torch
 import glob
 
 def hierarchical_graph_reader(path):
+    """
+    Reading the macro-level graph from disk.
+    :param path: Path to the edge list.
+    :return graph: Hierarchical graph as a NetworkX object.
+    """
     edges = pd.read_csv(path).values.tolist()
     graph = nx.from_edgelist(edges)
     return graph
 
 def graph_level_reader(path):
+    """
+    Reading a single graph from disk.
+    :param path: Path to the JSON file.
+    :return data: Dictionary of data.
+    """
     data = json.load(open(path))
     return data
 
