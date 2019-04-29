@@ -30,8 +30,9 @@ class SAGE(torch.nn.Module):
 
     def forward(self, data):
         """
+        Making a forward pass with the graph level data.
         :param data: Data feed dictionary.
-        :return graph_embedding:
+        :return graph_embedding: Graph level embedding.
         :return penalty: Regularization loss.
         """
         edges = data["edges"]
