@@ -20,7 +20,7 @@ def parameter_parser():
     parser.add_argument("--labeled-count",
                         type = int,
                         default = 100,
-	                help = "Number of labeled data points. Default is 50.")
+	                help = "Number of labeled data points. Default is 100.")
 
     parser.add_argument("--budget",
                         type = int,
