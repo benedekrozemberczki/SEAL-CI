@@ -101,6 +101,9 @@ class GraphDatasetGenerator(object):
         return feature_matrix
 
     def _data_transform(self, raw_data):
+        """
+        Creating a dictionary with the edge list matrix and the features matrix.
+        """
         clean_data = dict()
         clean_data["edges"] = self._transform_edges(raw_data)
         clean_data["features"] = self._transform_features(raw_data)
