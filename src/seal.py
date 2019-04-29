@@ -73,6 +73,9 @@ class SEALCITrainer(object):
             optimizer.step()
 
     def score_a_single_model(self):
+        """
+        Scoring the SEAL model.
+        """
         self.model.eval()
         predictions, penalty = self.model(self.dataset_generator.graphs, self.macro_graph_edges)
         scores, prediction_indices = predictions.max(dim=1)
