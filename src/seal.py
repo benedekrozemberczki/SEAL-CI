@@ -81,7 +81,6 @@ class SEALCITrainer(object):
             self._update_target(candidate, label)
             budget_size.set_description("Unlabeled Accuracy:%g" % round(accuracy, 4))
 
-
     def score(self):
         print("\nModel scoring.\n")
         scores, prediction_indices, accuracy = self.score_a_single_model()
