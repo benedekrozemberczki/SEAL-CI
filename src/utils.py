@@ -107,6 +107,9 @@ class GraphDatasetGenerator(object):
         return clean_data
 
     def _create_target(self):
+        """
+        Creating a target vector.
+        """
         self.target = [graph["label"] for graph in self.graphs]
         self.target = torch.LongTensor(self.target)
 
