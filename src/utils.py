@@ -37,25 +37,11 @@ def tab_printer(args):
     t.add_rows([["Parameter", "Value"]] + [[k.replace("_"," ").capitalize(),args[k]] for k in keys])
     print(t.draw())
 
-def get_graph_labels_and_features(graph_files):
-    """
-    Creating feature and label maps.
-    :param graph_files: Json filer list.
-    :return features: Feature map.
-    :return labels: Label map.
-    """
-    labels = set()
-    features = set()
-    for graph_file in tqdm(graph_files):
-        data = json.load(open(graph_file))
-        labels = labels.union(set([data["label"]]))
-        features = features.union(set([val for k,v in data["features"].items() for val in v]))
-    labels = {v:i for i,v in enumerate(labels)}
-    features = {v:i for i,v in enumerate(features)}
-    return features, labels
-
 class GraphDatasetGenerator(object):
-
+    """
+    Creating an in memory version of the graphs.
+    :param path: Folder with json files.
+    """
     def __init__(self, path):
         self.path = path
         self._enumerate_graphs()
@@ -64,6 +50,9 @@ class GraphDatasetGenerator(object):
         self._create_dataset()
 
     def _enumerate_graphs(self):
+        """
+        Listing the graph files and creating the respective label and feature maps.
+        """
         graph_count = len(glob.glob(self.path + "*.json"))
         labels = set()
         features = set()
@@ -78,6 +67,9 @@ class GraphDatasetGenerator(object):
         self.feature_map = {v:i for i,v in enumerate(features)}
 
     def _count_features_and_labels(self):
+        """
+        Counting the number of unique features and labels.
+        """
         self.number_of_features = len(self.feature_map)
         self.number_of_labels = len(self.label_map)
 
