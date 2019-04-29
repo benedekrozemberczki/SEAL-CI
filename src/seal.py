@@ -53,6 +53,9 @@ class SEALCITrainer(object):
         self.labeled_target[torch.LongTensor(self.labeled_indices)] = self.dataset_generator.target[torch.LongTensor(self.labeled_indices)]
 
     def _create_node_indices(self):
+        """
+        Creating an index of nodes.
+        """
         self.node_indices = [index for index in range(self.macro_graph.number_of_nodes())]
         self.node_indices = torch.LongTensor(self.node_indices)
 
