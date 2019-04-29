@@ -84,7 +84,9 @@ class MacroGCN(torch.nn.Module):
         return predictions
 
 class SEAL(torch.nn.Module):
-     
+    """
+    SEAL-CI model layer.
+    """
     def __init__(self, args, number_of_features, number_of_labels): 
         super(SEAL, self).__init__()
         self.args = args
