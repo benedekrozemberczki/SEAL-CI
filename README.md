@@ -60,6 +60,8 @@ Training a SEAL-CI model is handled by the `src/main.py` script which provides t
 #### Model options
 ```
   --epochs                      INT     Number of epochs.                  Default is 10.
+  --budget                      INT     Nodes to be added.                 Default is 10.
+  --labeled-count               INT     Number of labeled instances.       Default is 10.
   --weight-decay                FLOAT   Weight decay of Adam.              Defatuls is 10^-6.
   --gamma                       FLOAT   Regularization parameter.          Default is 1.0.
   --learning-rate               FLOAT   Adam learning rate.                Default is 0.01.
