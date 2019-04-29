@@ -29,6 +29,11 @@ class SAGE(torch.nn.Module):
         self.fully_connected_2 = torch.nn.Linear(self.args.first_dense_neurons, self.args.second_dense_neurons)
 
     def forward(self, data):
+        """
+        :param data: Data feed dictionary.
+        :return graph_embedding:
+        :return penalty: Regularization loss.
+        """
         edges = data["edges"]
         features = data["features"]
         node_features_1 = torch.nn.functional.relu(self.graph_convolution_1(features, edges))
