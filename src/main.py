@@ -5,7 +5,7 @@ import torch
 
 def main():
     """
-    Parsing command line parameters, reading data, fitting and scoring a SimGNN model.
+    Parsing command line parameters, reading data, fitting and scoring a SEAL-CI model.
     """
     args = parameter_parser()
     tab_printer(args)
