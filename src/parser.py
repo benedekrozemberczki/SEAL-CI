@@ -70,6 +70,6 @@ def parameter_parser():
     parser.add_argument("--gamma",
                         type = float,
                         default = 10**-5,
-	                help = "Attention regularization coefficient. Default is 10^-4.")
+	                help = "Attention regularization coefficient. Default is 10^-5.")
 
     return parser.parse_args()
