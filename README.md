@@ -36,7 +36,7 @@ torchvision       0.2.1
 #### Graphs
 The code takes graphs for training from an input folder where each graph is stored as a JSON. Graphs used for testing are also stored as JSON files. Every node id and node label has to be indexed from 0. Keys of dictionaries are stored strings in order to make JSON serialization possible.
 
-The graphs file has to be unzipped in the input folder.
+The graphs file **has to be unzipped** in the input folder.
 
 Every JSON file has the following key-value structure:
 
