@@ -1,7 +1,7 @@
-from utils import tab_printer, GraphDatasetGenerator 
-from parser import parameter_parser
-from seal import SEALCITrainer
 import torch
+from utils import tab_printer
+from seal import SEALCITrainer
+from parser import parameter_parser
 
 def main():
     """
