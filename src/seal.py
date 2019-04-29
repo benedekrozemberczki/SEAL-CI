@@ -46,7 +46,7 @@ class SEALCITrainer(object):
         for epoch in range(self.args.epochs):
             optimizer.zero_grad()
             predictions, penalty = self.model(self.dataset_generator.graphs, self.macro_graph_edges)
-            loss = torch.nn.functional.nll_loss(predictions[self.labeled_mask==1], self.labeled_target[self.labeled_mask==1]) + penalty
+            loss = torch.nn.functional.nll_loss(predictions[self.labeled_mask==1], self.labeled_target[self.labeled_mask==1]) + self.args.gamma*penalty
             loss.backward()
             optimizer.step()
 
