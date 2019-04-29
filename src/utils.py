@@ -1,11 +1,11 @@
-from texttable import Texttable
-from tqdm import tqdm
 import json
-import numpy as np
-import pandas as pd
-import networkx as nx
-import torch
 import glob
+import torch
+import pandas as pd
+import numpy as np
+from tqdm import tqdm
+import networkx as nx
+from texttable import Texttable
 
 def hierarchical_graph_reader(path):
     """
@@ -115,6 +115,3 @@ class GraphDatasetGenerator(object):
 
     def _create_dataset(self):
         self.graphs = [self._data_transform(graph) for graph in self.graphs]
-           
-
-        
