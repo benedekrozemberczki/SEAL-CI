@@ -70,7 +70,7 @@ Training a CapsGNN model is handled by the `src/main.py` script which provides t
   --learning-rate               FLOAT   Adam learning rate.                Default is 0.01.
 ```
 ### Examples
-The following commands learn a model and save the predictions. Training a model on the default dataset:
+The following commands learn a model and score on the unlabaled instances. Training a model on the default dataset:
 ```
 python src/main.py
 ```
@@ -78,11 +78,11 @@ python src/main.py
   <img width="500" src="seal.gif">
 </p>
 
-Training a CapsGNNN model for a 100 epochs.
+Training each SEAL-CI model for a 100 epochs.
 ```
 python src/main.py --epochs 100
 ```
-Changing the batch size.
+Changing the budget size.
 ```
-python src/main.py --batch-size 128
+python src/main.py --budget 200
 ```
