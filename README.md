@@ -67,8 +67,8 @@ Training a SEAL-CI model is handled by the `src/main.py` script which provides t
   --first-dense-neurons         INT     SAGE aggregator neurons.           Default is 16.
   --second-dense-neurons        INT     SAGE attention neurons.            Default is 4.
   --macro-gcn-dimensions        INT     Macro level GCN neurons.           Default is 16.
-  --weight-decay                FLOAT   Weight decay of Adam.              Defatul is 10^-6.
-  --gamma                       FLOAT   Regularization parameter.          Default is 10^-4.
+  --weight-decay                FLOAT   Weight decay of Adam.              Defatul is 5*10^-5.
+  --gamma                       FLOAT   Regularization parameter.          Default is 10^-5.
   --learning-rate               FLOAT   Adam learning rate.                Default is 0.01.
 ```
 ### Examples
