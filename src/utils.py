@@ -106,10 +106,12 @@ class GraphDatasetGenerator(object):
         clean_data["features"] = self._transform_features(raw_data)
         return clean_data
 
-
     def _create_target(self):
-        self.target = [ graph["label"] for graph in self.graphs]
+        self.target = [graph["label"] for graph in self.graphs]
         self.target = torch.LongTensor(self.target)
 
     def _create_dataset(self):
+        """
+        Creating a list of dictionaries with edge list matrices and feature matrices.
+        """
         self.graphs = [self._data_transform(graph) for graph in self.graphs]
