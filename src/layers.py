@@ -108,6 +108,11 @@ class SEAL(torch.nn.Module):
         self.hierarchical_model = MacroGCN(self.args, self.args.second_gcn_dimensions*self.args.second_dense_neurons, self.number_of_labels)
 
     def forward(self, graphs, macro_edges):
+        """
+        Making a forward pass.
+        :return predictions: Predicted scores.
+        :return penalties: Average penalty on graph representations.
+        """
         embeddings = []
         penalties = 0
         for graph in graphs:
