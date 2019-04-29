@@ -89,12 +89,21 @@ class SEAL(torch.nn.Module):
     """
     def __init__(self, args, number_of_features, number_of_labels): 
         super(SEAL, self).__init__()
+        """
+        Creating a SEAl-CI layer.
+        :param args: Arguments object.
+        :param number_of_features: Number of features per graph.
+        :param number_of_labels: Number of node level labels.
+        """
         self.args = args
         self.number_of_features = number_of_features
         self.number_of_labels = number_of_labels
         self._setup()
 
     def _setup(self):
+        """
+        Creating a two stage model/
+        """
         self.graph_level_model = SAGE(self.args, self.number_of_features)
         self.hierarchical_model = MacroGCN(self.args, self.args.second_gcn_dimensions*self.args.second_dense_neurons, self.number_of_labels)
 
