@@ -85,6 +85,9 @@ class SEALCITrainer(object):
         self.labeled_target[candidate] = label      
 
     def fit(self):
+        """
+        Training models sequentially.
+        """
         print("\nTraining started.\n")
         budget_size = trange(self.args.budget, desc='Unlabeled Accuracy: ', leave=True)
         for step in budget_size:
@@ -95,6 +98,9 @@ class SEALCITrainer(object):
             budget_size.set_description("Unlabeled Accuracy:%g" % round(accuracy, 4))
 
     def score(self):
+        """
+        Scoring the model.
+        """
         print("\nModel scoring.\n")
         scores, prediction_indices, accuracy = self.score_a_single_model()
         print("Unlabeled Accuracy:%g" % round(accuracy, 4))
