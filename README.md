@@ -47,6 +47,7 @@ The **edges** key has an edge list value which descibes the connectivity structu
 
 #### Hierarchical graph
 
+The hierarchical graph is stored as an edge list, where graph identifiers integers are the node identifiers. Finally, node pairs are separated by commas in the comma separated values file. This edge list file has a header.
 
 ### Options
 Training a SEAL-CI model is handled by the `src/main.py` script which provides the following command line arguments.
