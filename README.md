@@ -62,6 +62,11 @@ Training a SEAL-CI model is handled by the `src/main.py` script which provides t
   --epochs                      INT     Number of epochs.                  Default is 10.
   --budget                      INT     Nodes to be added.                 Default is 20.
   --labeled-count               INT     Number of labeled instances.       Default is 50.
+  --first-gcn-dimensions        INT
+  --second-gcn-dimensions       INT
+  --first-dense-neurons         INT
+  --second-dense-neurons        INT
+  --macro-gcn-dimensions        INT
   --weight-decay                FLOAT   Weight decay of Adam.              Defatul is 10^-6.
   --gamma                       FLOAT   Regularization parameter.          Default is 10^-4.
   --learning-rate               FLOAT   Adam learning rate.                Default is 0.01.
