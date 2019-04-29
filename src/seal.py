@@ -100,6 +100,11 @@ class SEALCITrainer(object):
         return candidate, label
 
     def _update_target(self, candidate, label):
+        """
+        Adding the new node to the mask and the target is updated with the predicted label.
+        :param candidate: Candidate node identifier.
+        :param label: Label of candidate node.
+        """
         self.labeled_mask[candidate] = 1
         self.labeled_target[candidate] = label      
 
