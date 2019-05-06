@@ -1,4 +1,4 @@
-SEAL
+SEAL [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/semi-supervised-graph-classification-a/graph-classification-on-proteins)](https://paperswithcode.com/sota/graph-classification-on-proteins?p=semi-supervised-graph-classification-a)
 ============================================
 An implementation of "Semi-Supervised Graph Classification: A Hierarchical Graph Perspective" (WWW 2019)
 <p align="center">
