@@ -1,4 +1,4 @@
-SEAL [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/semi-supervised-graph-classification-a/graph-classification-on-proteins)](https://paperswithcode.com/sota/graph-classification-on-proteins?p=semi-supervised-graph-classification-a) <img src="https://img.shields.io/badge/stars-60+-blue.svg"/> <img src="https://img.shields.io/badge/license-MIT-blue.svg"/> <img src="https://img.shields.io/badge/forks-5+-blue.svg"/> 
+SEAL [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/semi-supervised-graph-classification-a/graph-classification-on-proteins)](https://paperswithcode.com/sota/graph-classification-on-proteins?p=semi-supervised-graph-classification-a) <img src="https://img.shields.io/badge/stars-60+-blue.svg"/> <img src="https://img.shields.io/badge/license-MIT-blue.svg"/> <img src="https://img.shields.io/badge/forks-10+-blue.svg"/> 
 ============================================
 An implementation of "Semi-Supervised Graph Classification: A Hierarchical Graph Perspective" (WWW 2019)
 <p align="center">
