@@ -79,7 +79,8 @@ class GraphDatasetGenerator(object):
         :param raw_data: Dictionary with edge list.
         :return : Edge list matrix.
         """
-        return torch.t(torch.LongTensor(raw_data["edges"]))
+        edges = [[edge[0],edge[1]] for edge in raw_data["edges"]] + [[edge[1],edge[0]] for edge in raw_data["edges"]]
+        return torch.t(torch.LongTensor(edges))
 
     def _concatenate_name(self, index):
         """
