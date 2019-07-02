@@ -31,7 +31,7 @@ class SEALCITrainer(object):
         """
         Creating an edge list for the hierarchical graph.
         """
-        self.macro_graph_edges = [[edge[0],edge[1]] for edge in self.macro_graph.edges()]
+        self.macro_graph_edges = [[edge[0],edge[1]] for edge in self.macro_graph.edges()] + [[edge[1],edge[0]] for edge in self.macro_graph.edges()]
         self.macro_graph_edges = torch.t(torch.LongTensor(self.macro_graph_edges))
 
     def _create_split(self):
