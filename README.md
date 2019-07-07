@@ -17,6 +17,8 @@ This repository provides a PyTorch implementation of SEAL-CI as described in the
 > WWW, 2019.
 > [[Paper]](https://arxiv.org/pdf/1904.05003.pdf)
 
+A TensorFlow implementatio of the model is available [[here]](https://github.com/xiyou3368/SAGE).
+
 ### Requirements
 The codebase is implemented in Python 3.5.2. package versions used for development are just below.
 ```
