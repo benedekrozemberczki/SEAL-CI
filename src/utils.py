@@ -1,3 +1,5 @@
+"""Data reading utils."""
+
 import json
 import glob
 import torch
@@ -33,8 +35,9 @@ def tab_printer(args):
     """
     args = vars(args)
     keys = sorted(args.keys())
-    t = Texttable() 
-    t.add_rows([["Parameter", "Value"]] + [[k.replace("_"," ").capitalize(),args[k]] for k in keys])
+    t = Texttable()
+    t.add_rows([["Parameter", "Value"]])
+    t.add_rows([[k.replace("_", " ").capitalize(), args[k]] for k in keys])
     print(t.draw())
 
 class GraphDatasetGenerator(object):
@@ -62,9 +65,9 @@ class GraphDatasetGenerator(object):
             data = graph_level_reader(graph_file)
             self.graphs.append(data)
             labels = labels.union(set([data["label"]]))
-            features = features.union(set([val for k,v in data["features"].items() for val in v]))
-        self.label_map = {v:i for i,v in enumerate(labels)}
-        self.feature_map = {v:i for i,v in enumerate(features)}
+            features = features.union(set([val for k, v in data["features"].items() for val in v]))
+        self.label_map = {v: i for i, v in enumerate(labels)}
+        self.feature_map = {v: i for i, v in enumerate(features)}
 
     def _count_features_and_labels(self):
         """
@@ -79,7 +82,8 @@ class GraphDatasetGenerator(object):
         :param raw_data: Dictionary with edge list.
         :return : Edge list matrix.
         """
-        edges = [[edge[0],edge[1]] for edge in raw_data["edges"]] + [[edge[1],edge[0]] for edge in raw_data["edges"]]
+        edges = [[edge[0], edge[1]] for edge in raw_data["edges"]]
+        edges = edges + [[edge[1], edge[0]] for edge in raw_data["edges"]]
         return torch.t(torch.LongTensor(edges))
 
     def _concatenate_name(self, index):
@@ -94,12 +98,12 @@ class GraphDatasetGenerator(object):
         """
         Creating a feature matrix from the raw data.
         :param raw_data: Dictionary with features.
-        :return feature_matrix: FloatTensor of features. 
+        :return feature_matrix: FloatTensor of features.
         """
         number_of_nodes = len(raw_data["features"])
         feature_matrix = np.zeros((number_of_nodes, self.number_of_features))
-        index_1 = [int(node) for node, features in raw_data["features"].items() for feature in features]
-        index_2 = [int(self.feature_map[feature]) for node, features in raw_data["features"].items() for feature in features]
+        index_1 = [int(n) for n, feats in raw_data["features"].items() for f in feats]
+        index_2 = [int(self.feature_map[f]) for n, feats in raw_data["features"].items() for f in feats]
         feature_matrix[index_1, index_2] = 1.0
         feature_matrix = torch.FloatTensor(feature_matrix)
         return feature_matrix
