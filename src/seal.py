@@ -2,15 +2,15 @@
 
 import torch
 import random
-from layers import SEAL
 from tqdm import trange
-from utils import hierarchical_graph_reader, GraphDatasetGenerator 
+from layers import SEAL
+from utils import hierarchical_graph_reader, GraphDatasetGenerator
 
 class SEALCITrainer(object):
     """
     Semi-Supervised Graph Classification: A Hierarchical Graph Perspective Cautious Iteration model.
     """
-    def __init__(self,args):
+    def __init__(self, args):
         """
         Creating dataset, doing dataset split, creating target and node index vectors.
         :param args: Arguments object.
@@ -34,7 +34,8 @@ class SEALCITrainer(object):
         """
         Creating an edge list for the hierarchical graph.
         """
-        self.macro_graph_edges = [[edge[0],edge[1]] for edge in self.macro_graph.edges()] + [[edge[1],edge[0]] for edge in self.macro_graph.edges()]
+        self.macro_graph_edges = [[edge[0], edge[1]] for edge in self.macro_graph.edges()]
+        self.macro_graph_edges = self.macro_graph_edges + [[edge[1], edge[0]] for edge in self.macro_graph.edges()]
         self.macro_graph_edges = torch.t(torch.LongTensor(self.macro_graph_edges))
 
     def _create_split(self):
@@ -52,8 +53,9 @@ class SEALCITrainer(object):
         """
         self.labeled_mask = torch.LongTensor([0 for node in self.macro_graph.nodes()])
         self.labeled_target = torch.LongTensor([0 for node in self.macro_graph.nodes()])
-        self.labeled_mask[torch.LongTensor(self.labeled_indices)] = 1
-        self.labeled_target[torch.LongTensor(self.labeled_indices)] = self.dataset_generator.target[torch.LongTensor(self.labeled_indices)]
+        indices = torch.LongTensor(self.labeled_indices)
+        self.labeled_mask[indices] = 1
+        self.labeled_target[indices] = self.dataset_generator.target[indices]
 
     def _create_node_indices(self):
         """
@@ -67,11 +69,16 @@ class SEALCITrainer(object):
         Fitting a single SEAL model.
         """
         self._setup_model()
-        optimizer = torch.optim.Adam(self.model.parameters(), lr=self.args.learning_rate, weight_decay=self.args.weight_decay)      
-        for epoch in range(self.args.epochs):
+        optimizer = torch.optim.Adam(self.model.parameters(),
+                                     lr=self.args.learning_rate,
+                                     weight_decay=self.args.weight_decay)
+
+        for _ in range(self.args.epochs):
             optimizer.zero_grad()
             predictions, penalty = self.model(self.dataset_generator.graphs, self.macro_graph_edges)
-            loss = torch.nn.functional.nll_loss(predictions[self.labeled_mask==1], self.labeled_target[self.labeled_mask==1]) + self.args.gamma*penalty
+            loss = torch.nn.functional.nll_loss(predictions[self.labeled_mask == 1],
+                                                self.labeled_target[self.labeled_mask == 1])
+            loss = loss + self.args.gamma*penalty
             loss.backward()
             optimizer.step()
 
@@ -80,10 +87,11 @@ class SEALCITrainer(object):
         Scoring the SEAL model.
         """
         self.model.eval()
-        predictions, penalty = self.model(self.dataset_generator.graphs, self.macro_graph_edges)
+        predictions, _ = self.model(self.dataset_generator.graphs, self.macro_graph_edges)
         scores, prediction_indices = predictions.max(dim=1)
-        correct = prediction_indices[self.labeled_mask==0].eq(self.labeled_target[self.labeled_mask==0]).sum().item()
-        normalizer = prediction_indices[self.labeled_mask==0].shape[0]
+        correct = prediction_indices[self.labeled_mask == 0]
+        correct = correct.eq(self.labeled_target[self.labeled_mask == 0]).sum().item()
+        normalizer = prediction_indices[self.labeled_mask == 0].shape[0]
         accuracy = float(correct)/float(normalizer)
         return scores, prediction_indices, accuracy
             
@@ -95,8 +103,8 @@ class SEALCITrainer(object):
         :return candidate: Node chosen.
         :return label: Label of node.
         """
-        nodes = self.node_indices[self.labeled_mask==0]
-        sub_predictions = predictions[self.labeled_mask==0]
+        nodes = self.node_indices[self.labeled_mask == 0]
+        sub_predictions = predictions[self.labeled_mask == 0]
         sub_predictions, candidate = sub_predictions.max(dim=0)
         candidate = nodes[candidate]
         label = indices[candidate]
@@ -117,7 +125,7 @@ class SEALCITrainer(object):
         """
         print("\nTraining started.\n")
         budget_size = trange(self.args.budget, desc='Unlabeled Accuracy: ', leave=True)
-        for step in budget_size:
+        for _ in budget_size:
             self.fit_a_single_model()
             scores, prediction_indices, accuracy = self.score_a_single_model()
             candidate, label = self._choose_best_candidate(scores, prediction_indices)
