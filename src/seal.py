@@ -1,3 +1,5 @@
+"""SEAL-CI model."""
+
 import torch
 import random
 from layers import SEAL
@@ -25,7 +27,8 @@ class SEALCITrainer(object):
         """
         Creating a SEAL model.
         """
-        self.model = SEAL(self.args, self.dataset_generator.number_of_features, self.dataset_generator.number_of_labels)
+        self.model = SEAL(self.args, self.dataset_generator.number_of_features,
+                          self.dataset_generator.number_of_labels)
 
     def _setup_macro_graph(self):
         """
